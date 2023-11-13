@@ -1,20 +1,37 @@
 import React from "react";
 
+import Image from "next/image";
 import { CardStyle } from "./CardItem.ts";
 
-export default function CardItem() {
+interface apiProps {
+  id: number;
+  name: String;
+  brand: String;
+  description: String;
+  photo: string;
+  price: String;
+  createdAt: String;
+  updatedAt: String;
+}
+
+export default function CardItem(props: apiProps) {
+  const { id, name, brand, description, photo, price, createdAt, updatedAt } =
+    props;
+
   return (
     <>
       <CardStyle>
-        <div className="imagem"></div>
+        <div className="image">
+          <img src={photo} alt="" />
+        </div>
         <div className="line1">
-          <h1>Apple Watch Series 4 GPS</h1>
+          <h1>{name}</h1>
           <div className="square">
-            <h2>R$399</h2>
+            <h2>R${Number(price).toFixed(0)}</h2>
           </div>
         </div>
         <div className="detail">
-          <span>Redesigned from scratch and completely revised.</span>
+          <span>{description}</span>
         </div>
         <button>COMPRAR</button>
       </CardStyle>

@@ -1,14 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import GlobalStyle from "./global";
-import { Container, Footer, Header } from "./styles";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-import CardItem from "./components/CardItem.tsx";
+import MarketCart from "./components/Cart/MarketCart.tsx";
+import CardItem from "./components/CardItem/CardItem.tsx";
 
 import Cart from "@/app/assets/cart";
+
+import GlobalStyle from "./global";
+import { Container, Footer, Header } from "./styles";
 
 interface apiProps {
   id: number;
@@ -70,6 +72,7 @@ export default function Home() {
       <Footer>
         <span>MKS sistemas © Todos os direitos reservados</span>
       </Footer>
+      <MarketCart></MarketCart>
     </>
   );
 }

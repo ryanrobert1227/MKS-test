@@ -1,4 +1,3 @@
-import { Hi_Melody } from "next/font/google";
 import styled, { css } from "styled-components";
 
 export const Header = styled.header<{}>(() => {

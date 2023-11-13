@@ -7,8 +7,8 @@ export const CardStyle = styled.section<{}>(() => {
 
     border-radius: 0px 0px 8px 8px;
 
-    height: 47%;
-    width: 22.5%;
+    height: 242px;
+    width: 238px;
 
     .imagem {
       height: 50%;

@@ -3,16 +3,7 @@ import React from "react";
 import Image from "next/image";
 import { CardStyle } from "./CardItem.ts";
 
-interface apiProps {
-  id: number;
-  name: String;
-  brand: String;
-  description: String;
-  photo: string;
-  price: String;
-  createdAt: String;
-  updatedAt: String;
-}
+import { apiProps } from "@/app/types/apiTypes.ts";
 
 export default function CardItem(props: apiProps) {
   const { id, name, brand, description, photo, price, createdAt, updatedAt } =

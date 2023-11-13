@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { useSelector, useDispatch } from "react-redux";
 import axios from "axios";
+
+import ActionTypes from "./redux/Data/action-types.js";
 
 import MarketCart from "./components/Cart/MarketCart.tsx";
 import CardItem from "./components/CardItem/CardItem.tsx";
@@ -12,19 +15,15 @@ import Cart from "@/app/assets/cart";
 import GlobalStyle from "./global";
 import { Container, Footer, Header } from "./styles";
 
-interface apiProps {
-  id: number;
-  name: String;
-  brand: String;
-  description: String;
-  photo: string;
-  price: String;
-  createdAt: String;
-  updatedAt: String;
-}
+import { apiProps } from "./types/apiTypes.ts";
 
 export default function Home() {
-  const [apiData, setAPIData] = useState<apiProps[]>([]);
+  const [cartIsOpen, setCartIsOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const { getData }: { getData: apiProps[] } = useSelector(
+    (rootReducer: any) => rootReducer.getDataReducer
+  );
 
   const {} = useQuery({
     queryKey: ["apiProps"],
@@ -32,7 +31,7 @@ export default function Home() {
       const { data } = await axios.get(
         "https://mks-frontend-challenge-04811e8151e6.herokuapp.com/api/v1/products?page=1&rows=8&sortBy=id&orderBy=ASC"
       );
-      setAPIData(data.products);
+      dispatch({ type: ActionTypes.get, payload: data.products });
     },
   });
 
@@ -45,7 +44,7 @@ export default function Home() {
           <h2>Sistemas</h2>
         </div>
         <div className="cart">
-          <button>
+          <button onClick={() => setCartIsOpen(true)}>
             <Cart />
             <span>0</span>
           </button>
@@ -53,7 +52,7 @@ export default function Home() {
       </Header>
       <Container>
         <div className="card-box">
-          {apiData.map((e) => {
+          {getData.map((e) => {
             return (
               <CardItem
                 id={e.id}
@@ -72,7 +71,7 @@ export default function Home() {
       <Footer>
         <span>MKS sistemas © Todos os direitos reservados</span>
       </Footer>
-      <MarketCart></MarketCart>
+      {cartIsOpen && <MarketCart setCartIsOpen={setCartIsOpen} />}
     </>
   );
 }

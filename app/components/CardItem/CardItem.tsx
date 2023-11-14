@@ -21,10 +21,6 @@ export default function CardItem(props: apiProps) {
     (rootReducer: any) => rootReducer.itemsQuantityReducer
   );
 
-  // const { itemsInCart }: { itemsInCart: apiProps[] } = useSelector(
-  //   (rootReducer: any) => rootReducer.itemsQuantityReducer
-  // );
-
   function handleClickToBuy() {
     eachQuantity.splice(id - 1, 1, eachQuantity[id - 1] + 1);
     dispatch({ type: ActionTypes.eachQuantity, payload: eachQuantity });

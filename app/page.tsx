@@ -8,21 +8,17 @@ import axios from "axios";
 import ActionTypes from "./redux/Data/action-types.js";
 
 import Header from "./components/Header/Header.tsx";
+import Footer from "./components/Footer/Footer.tsx";
 import CardItem from "./components/CardItem/CardItem.tsx";
 import MarketCart from "./components/Cart/MarketCart.tsx";
 
 import { apiProps } from "./types/apiTypes.ts";
 
 import GlobalStyle from "./global";
-import { Container, Footer } from "./styles";
+import { Container } from "./styles";
 
 export default function Home() {
-  const [cartIsOpen, setCartIsOpen] = useState(false);
   const dispatch = useDispatch();
-
-  const { getData }: { getData: apiProps[] } = useSelector(
-    (rootReducer: any) => rootReducer.getDataReducer
-  );
 
   const {} = useQuery({
     queryKey: ["apiProps"],
@@ -33,6 +29,11 @@ export default function Home() {
       dispatch({ type: ActionTypes.get, payload: data.products });
     },
   });
+
+  const [cartIsOpen, setCartIsOpen] = useState(false);
+  const { getData }: { getData: apiProps[] } = useSelector(
+    (rootReducer: any) => rootReducer.getDataReducer
+  );
 
   return (
     <>
@@ -57,9 +58,7 @@ export default function Home() {
           })}
         </div>
       </Container>
-      <Footer>
-        <span>MKS sistemas © Todos os direitos reservados</span>
-      </Footer>
+      <Footer />
       {cartIsOpen && <MarketCart setCartIsOpen={setCartIsOpen} />}
     </>
   );

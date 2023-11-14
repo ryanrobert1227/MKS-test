@@ -33,16 +33,23 @@ export default function MiniCardItem(props: apiProps) {
   function handleAddQuantity() {
     eachQuantity.splice(id - 1, 1, eachQuantity[id - 1] + 1);
     dispatch({ type: ActionTypes.eachQuantity, payload: eachQuantity });
+
+    dispatch({ type: ActionTypes.itemsInCart, payload: [...itemsInCart] });
   }
 
   function handleRemoveItem() {
     const newItems = itemsInCart.filter((item) => item.id !== id);
+    eachQuantity.splice(id - 1, 1, 0);
 
+    dispatch({ type: ActionTypes.eachQuantity, payload: eachQuantity });
     dispatch({ type: ActionTypes.itemsInCart, payload: newItems });
   }
 
   return (
     <MiniCardStyle>
+      <button className="closeBox" onClick={handleRemoveItem}>
+        X
+      </button>
       <div className="image">
         <img src={photo} alt="" />
       </div>

@@ -4,11 +4,9 @@ import { useSelector } from "react-redux";
 import { HeaderStyle } from "./Header.ts";
 import Cart from "../../assets/cart.tsx";
 
-interface HeaderProps {
-  setCartIsOpen: any;
-}
+import { SumItemsProps } from "@/app/types/propsTypes.ts";
 
-export default function Header(props: HeaderProps) {
+export default function Header(props: SumItemsProps) {
   const { sumItems }: { sumItems: number } = useSelector(
     (rootReducer: any) => rootReducer.itemsQuantityReducer
   );

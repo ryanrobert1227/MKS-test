@@ -14,13 +14,16 @@ export default function CardItem(props: apiProps) {
 
   const dispatch = useDispatch();
 
-  const { eachQuantity }: { eachQuantity: number[] } = useSelector(
+  const {
+    eachQuantity,
+    itemsInCart,
+  }: { eachQuantity: number[]; itemsInCart: apiProps[] } = useSelector(
     (rootReducer: any) => rootReducer.itemsQuantityReducer
   );
 
-  const { itemsInCart }: { itemsInCart: apiProps[] } = useSelector(
-    (rootReducer: any) => rootReducer.itemsQuantityReducer
-  );
+  // const { itemsInCart }: { itemsInCart: apiProps[] } = useSelector(
+  //   (rootReducer: any) => rootReducer.itemsQuantityReducer
+  // );
 
   function handleClickToBuy() {
     eachQuantity.splice(id - 1, 1, eachQuantity[id - 1] + 1);

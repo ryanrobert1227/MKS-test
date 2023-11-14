@@ -6,18 +6,29 @@ import { useSelector } from "react-redux";
 import MiniCardItem from "../MiniCardItem/MiniCardItem.tsx";
 
 import { apiProps } from "@/app/types/apiTypes.ts";
+import { SumItemsProps } from "@/app/types/propsTypes.ts";
 
 import { CartBox } from "./MarketCart.ts";
 
-interface MarketCartProps {
-  setCartIsOpen: any;
-}
-
-export default function MarketCart(props: MarketCartProps) {
+export default function MarketCart(props: SumItemsProps) {
   const { setCartIsOpen } = props;
   const { itemsInCart }: { itemsInCart: apiProps[] } = useSelector(
     (rootReducer: any) => rootReducer.itemsQuantityReducer
   );
+
+  const { eachQuantity }: { eachQuantity: number[] } = useSelector(
+    (rootReducer: any) => rootReducer.itemsQuantityReducer
+  );
+
+  function handleFinalPrice() {
+    let sum = 0;
+    itemsInCart.map((item) => {
+      sum += eachQuantity[item.id - 1] * Number(item.price);
+      return;
+    });
+
+    return sum;
+  }
 
   return (
     <CartBox>
@@ -30,6 +41,7 @@ export default function MarketCart(props: MarketCartProps) {
         {itemsInCart.map((item) => {
           return (
             <MiniCardItem
+              key={item.id}
               id={item.id}
               name={item.name}
               brand={item.brand}
@@ -44,7 +56,7 @@ export default function MarketCart(props: MarketCartProps) {
       </div>
       <div className="totalValue">
         <h1>Total:</h1>
-        <h2>R$ 798</h2>
+        <h2>R$ {handleFinalPrice()}</h2>
       </div>
       <button className="buyConfirm"> Confirmar Compra</button>
     </CartBox>

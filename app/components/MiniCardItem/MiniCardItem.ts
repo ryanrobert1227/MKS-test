@@ -5,6 +5,7 @@ export const MiniCardStyle = styled.section<{}>(() => {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: relative;
 
     border-radius: 8px;
     box-shadow: -2px 2px 10px 0px rgba(0, 0, 0, 0.05);
@@ -13,6 +14,30 @@ export const MiniCardStyle = styled.section<{}>(() => {
     width: 100%;
 
     background-color: #fff;
+
+    .closeBox {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: -0.5rem;
+      right: -0.5rem;
+
+      border: none;
+      border-radius: 50%;
+
+      width: 1rem;
+      height: 1rem;
+
+      font-family: "Montserrat";
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 15px;
+
+      color: #fff;
+      background-color: #000;
+    }
 
     .image {
       height: 98%;
@@ -98,6 +123,7 @@ export const MiniCardStyle = styled.section<{}>(() => {
     }
 
     h2 {
+      width: 19%;
       margin-right: 0.5rem;
 
       font-family: "Montserrat";

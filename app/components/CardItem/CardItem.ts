@@ -7,8 +7,10 @@ export const CardStyle = styled.section<{}>(() => {
 
     border-radius: 0px 0px 8px 8px;
 
-    height: 242px;
+    height: 244px;
     width: 238px;
+
+    overflow: hidden;
 
     .image {
       display: flex;
@@ -29,7 +31,7 @@ export const CardStyle = styled.section<{}>(() => {
 
       height: 16%;
 
-      margin-top: 0.3rem;
+      margin-top: 0.7rem;
 
       h1 {
         width: 70%;
@@ -40,7 +42,7 @@ export const CardStyle = styled.section<{}>(() => {
         font-weight: 400;
         line-height: 19px;
 
-        color: #2c2c2c;
+        opacity: 0.8;
       }
       .square {
         display: flex;
@@ -85,7 +87,7 @@ export const CardStyle = styled.section<{}>(() => {
         font-weight: 300;
         line-height: 150%;
 
-        color: #2c2c2c;
+        opacity: 0.8;
       }
     }
 
@@ -101,7 +103,15 @@ export const CardStyle = styled.section<{}>(() => {
       border-radius: 0px 0px 8px 8px;
 
       color: #fff;
-      background-color: #0f52ba;
+      background-color: rgb(15, 82, 186);
+
+      &:hover {
+        background-color: rgb(15, 52, 186);
+      }
+
+      &:active {
+        background-color: rgb(10, 22, 186);
+      }
     }
   `;
 });

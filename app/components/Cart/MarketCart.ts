@@ -48,11 +48,15 @@ export const CartBox = styled.section<{}>(() => {
     }
 
     .container {
+      display: flex;
+      flex-direction: column;
+      gap: 2% 0;
+
       height: 73%;
       width: 100%;
       margin-top: 0.5rem;
 
-      background-color: green;
+      /* overflow: scroll; */
     }
 
     .totalValue {

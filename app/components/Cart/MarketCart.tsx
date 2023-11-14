@@ -2,9 +2,12 @@
 
 import React from "react";
 import { useSelector } from "react-redux";
-import { CartBox } from "./MarketCart.ts";
+
+import MiniCardItem from "../MiniCardItem/MiniCardItem.tsx";
 
 import { apiProps } from "@/app/types/apiTypes.ts";
+
+import { CartBox } from "./MarketCart.ts";
 
 interface MarketCartProps {
   setCartIsOpen: any;
@@ -12,8 +15,8 @@ interface MarketCartProps {
 
 export default function MarketCart(props: MarketCartProps) {
   const { setCartIsOpen } = props;
-  const { getData }: { getData: apiProps[] } = useSelector(
-    (rootReducer: any) => rootReducer.getDataReducer
+  const { itemsInCart }: { itemsInCart: apiProps[] } = useSelector(
+    (rootReducer: any) => rootReducer.itemsQuantityReducer
   );
 
   return (
@@ -23,7 +26,22 @@ export default function MarketCart(props: MarketCartProps) {
 
         <button onClick={() => setCartIsOpen(false)}>X</button>
       </div>
-      <div className="container"></div>
+      <div className="container">
+        {itemsInCart.map((item) => {
+          return (
+            <MiniCardItem
+              id={item.id}
+              name={item.name}
+              brand={item.brand}
+              description={item.description}
+              photo={item.photo}
+              price={item.price}
+              createdAt={item.createdAt}
+              updatedAt={item.updatedAt}
+            />
+          );
+        })}
+      </div>
       <div className="totalValue">
         <h1>Total:</h1>
         <h2>R$ 798</h2>

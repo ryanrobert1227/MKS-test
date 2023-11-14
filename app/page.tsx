@@ -7,15 +7,14 @@ import axios from "axios";
 
 import ActionTypes from "./redux/Data/action-types.js";
 
-import MarketCart from "./components/Cart/MarketCart.tsx";
+import Header from "./components/Header/Header.tsx";
 import CardItem from "./components/CardItem/CardItem.tsx";
-
-import Cart from "@/app/assets/cart";
-
-import GlobalStyle from "./global";
-import { Container, Footer, Header } from "./styles";
+import MarketCart from "./components/Cart/MarketCart.tsx";
 
 import { apiProps } from "./types/apiTypes.ts";
+
+import GlobalStyle from "./global";
+import { Container, Footer } from "./styles";
 
 export default function Home() {
   const [cartIsOpen, setCartIsOpen] = useState(false);
@@ -38,23 +37,13 @@ export default function Home() {
   return (
     <>
       <GlobalStyle />
-      <Header>
-        <div className="logo">
-          <h1>MKS</h1>
-          <h2>Sistemas</h2>
-        </div>
-        <div className="cart">
-          <button onClick={() => setCartIsOpen(true)}>
-            <Cart />
-            <span>0</span>
-          </button>
-        </div>
-      </Header>
+      <Header setCartIsOpen={setCartIsOpen} />
       <Container>
         <div className="card-box">
           {getData.map((e) => {
             return (
               <CardItem
+                key={e.id}
                 id={e.id}
                 name={e.name}
                 brand={e.brand}

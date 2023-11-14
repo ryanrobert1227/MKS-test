@@ -7,6 +7,7 @@ import axios from "axios";
 
 import ActionTypes from "./redux/Data/action-types.js";
 
+import CircularProgress from "@mui/material/CircularProgress";
 import Header from "./components/Header/Header.tsx";
 import Footer from "./components/Footer/Footer.tsx";
 import CardItem from "./components/CardItem/CardItem.tsx";
@@ -39,7 +40,16 @@ export default function Home() {
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "90vh",
+          }}
+        >
+          <CircularProgress />
+        </div>
       ) : (
         <>
           <GlobalStyle />
